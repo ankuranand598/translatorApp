@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&family=Source+Code+Pro:ital,wght@1,600&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        #main {
+            display: flex;
+            /* justify-content: ; */
+            border: 1px solid silver;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            background-image: url('http://4kwallpapers.com/images/walls/thumbs_2t/1455.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            /*Fallback if gradeints don't work */
+            /* background: #9b59b6; */
+            /*Linear gradient... */
+            /* background:
+                radial-gradient(at center, #3498db, #9b59b6); */
+        }
+
+        #textPrint {
+            height: 300px;
+            width: 300px;
+            border: 1px solid black;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+            #text1:hover{
+                transform: scale(1.1);
+            }
+
+        #text1 {
+            height: 300px;
+            width: 300px;
+            border: 1px solid black;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-left: 250px;
+
+        }
+
+        #languageFrom {
+            padding: 10px;
+            margin: 15px;
+        }
+
+        #languageTo {
+            padding: 10px;
+            margin: 15px;
+        }
+
+        #btn {
+            padding: 10px;
+            width: 150px;
+            background: #2980B9;
+            justify-content: center;
+            margin-top: 150px;
+            margin: 25px;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            border-radius: 20px;
+            border: none;
+            font-weight: bolder;
+        }
+
+        .text {
+            margin-top: 50px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #main {
+                display: flex;
+                flex-direction: column;
+                /* justify-content: ; */
+                border: 1px solid silver;
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                height: 100%;
+                width: 100%;
+                background-image: url('https://i.pinimg.com/originals/08/48/82/0848825f54ac3b768e975e5fb0b44fd9.gif');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            #textPrint,
+            #text1 {
+                height: 50px;
+                width: 50x;
+                border: 1px solid black;
+                padding: 15px;
+                margin: 10px;
+            }
+
+            #btn {
+                margin: 20px;
+                background: rgba(255, 255, 255, 1);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+            }
+
+            .text {
+                margin-top: 2px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="main">
+        <div id="box-1">
+            <form onsubmit="submitLang(event)">
+                <div>
+                    <h3 class="text">Translate from</h3>
+                    <br />
+                    <select id="languageFrom">
+                        <option value="en">English</option>
+                        <option value="ar">Arabic</option>
+                        <option value="zh">Chinese</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="hi">Hindi</option>
+                        <option value="id">Indonesian</option>
+                        <option value="ga">Irish</option>
+                        <option value="it">Italian</option>
+                        <option value="ja">Japanese</option>
+                        <option value="pl">Polish</option>
+                        <option value="ko">Korean</option>
+                        <option value="ru">Russian</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="tr">Turkish</option>
+                        <option value="vi">Vietnamese</option>
+                    </select>
+                </div>
+
+                <textarea rows="3" cols="25" placeholder="type here" id="text1"></textarea>
+        </div>
+        <div><input type="submit" id='btn'></div>
+
+        <div id="box-2">
+            <div>
+                <h3 class="text">Translate to</h3>
+                <select onchange="againFetchApi()" id="languageTo">
+                    <option value="en">English</option>
+                    <option value="ar">Arabic</option>
+                    <option value="zh">Chinese</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="hi">Hindi</option>
+                    <option value="id">Indonesian</option>
+                    <option value="ga">Irish</option>
+                    <option value="it">Italian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="pl">Polish</option>
+                    <option value="ko">Korean</option>
+                    <option value="ru">Russian</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="tr">Turkish</option>
+                    <option value="vi">Vietnamese</option>
+                </select>
+            </div>
+
+            <textarea id="textPrint"></textarea>
+        </div>
+        </form>
+    </div>
+</body>
+
+</html>
+<script>
+    let div = document.getElementById('textPrint')
+    function submitLang(e) {
+        e.preventDefault();
+        div.innerText = null;
+        // let f=document.getElementById('languageTo');
+        // let lang= f.value;
+        var x = document.getElementById("languageFrom");
+        var y = x.value;
+        var a = document.getElementById("languageTo");
+        var b = a.value;
+        let text1 = document.getElementById("text1").value
+        fetch("https://libretranslate.de/translate", {
+            method: "POST",
+            body: JSON.stringify({
+                q: `${text1}`,
+                source: `${y}`,
+                target: `${b}`
+            }),
+            headers: { "Content-Type": "application/json" }
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((res) => {
+                console.log("res:", res)
+                div.innerText = res.translatedText;
+            })
+            .catch((err) => {
+                console.log("err:", err)
+            })
+    }
+
+    function againFetchApi() {
+        div.innerText = null;
+        // let f=document.getElementById('languageTo');
+        // let lang= f.value;
+        var x = document.getElementById("languageFrom");
+        var y = x.value;
+        var a = document.getElementById("languageTo");
+        var b = a.value;
+        let text1 = document.getElementById("text1").value
+        fetch("https://libretranslate.de/translate", {
+            method: "POST",
+            body: JSON.stringify({
+                q: `${text1}`,
+                source: `${y}`,
+                target: `${b}`
+            }),
+            headers: { "Content-Type": "application/json" }
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((res) => {
+                console.log("res:", res)
+                div.innerText = res.translatedText;
+            })
+            .catch((err) => {
+                console.log("err:", err)
+            })
+    }
+</script>
